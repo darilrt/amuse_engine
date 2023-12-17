@@ -6,10 +6,13 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+amuse_events = { path = "amuse_events" }
+amuse_scene = { path = "amuse_scene" }
 amuse_macro = { path = "amuse_macro" }
 amuse_window = { path = "amuse_window" }
 amuse_core = { path = "amuse_core" }
 amuse_event = { path = "amuse_event" }
+
 env_logger = "0.10.1"
 tokio = { version = "1.35.0", features = ["rt-multi-thread"] }
 wgpu = "0.18.0"
@@ -21,5 +24,8 @@ members = [
     "amuse_core",
     "amuse_event",
     "amuse_window",
+    "amuse_macro",
+    "amuse_scene",
+    "amuse_events",
 ]
 resolver = "2"

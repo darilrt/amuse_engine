@@ -64,9 +64,6 @@ checksum = "0942ffc6dcaadf03badf6e6a2d0228460359d5e34b57ccdc720b7382dfbd5ec5"
 [[package]]
 name = "amuse_core"
 version = "0.1.0"
-dependencies = [
- "amuse_scene",
-]
 
 [[package]]
 name = "amuse_engine"
@@ -74,7 +71,9 @@ version = "0.1.0"
 dependencies = [
  "amuse_core",
  "amuse_event",
+ "amuse_events",
  "amuse_macro",
+ "amuse_scene",
  "amuse_window",
  "env_logger",
  "tokio",
@@ -90,6 +89,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "amuse_events"
+version = "0.1.0"
+dependencies = [
+ "amuse_event",
+ "amuse_macro",
+]
+
+[[package]]
 name = "amuse_macro"
 version = "0.1.0"
 dependencies = [
@@ -102,6 +109,11 @@ dependencies = [
 [[package]]
 name = "amuse_scene"
 version = "0.1.0"
+dependencies = [
+ "amuse_core",
+ "amuse_event",
+ "amuse_events",
+]
 
 [[package]]
 name = "amuse_window"
@@ -109,6 +121,7 @@ version = "0.1.0"
 dependencies = [
  "amuse_core",
  "amuse_event",
+ "amuse_events",
  "amuse_macro",
  "winit",
 ]

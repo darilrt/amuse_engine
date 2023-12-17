@@ -1,4 +1,5 @@
 use amuse_core::EngineState;
+use amuse_events::{LoopInit, LoopPostUpdate, LoopRender, LoopUpdate};
 use winit::{
     event::{Event, WindowEvent},
     window,
@@ -37,11 +38,13 @@ impl amuse_core::Resource for Window {
                             });
                         }
                         WindowEvent::CloseRequested => {
-                            es.notify(CloseWindowEvent {});
+                            es.notify(LoopInit {});
                             elwt.exit();
                         }
                         WindowEvent::RedrawRequested => {
-                            es.notify(RedrawEvent {});
+                            es.notify(LoopUpdate {});
+                            es.notify(LoopPostUpdate {});
+                            es.notify(LoopRender {});
                         }
                         _ => {}
                     }

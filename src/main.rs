@@ -1,18 +1,46 @@
 use amuse_core::EngineState;
-use amuse_event::{Event, EventSystem};
-use amuse_window::{Window, WindowResizedEvent};
+use amuse_event::EventSystem;
+use amuse_scene::{Component, SceneManager};
+use amuse_window::Window;
+
+struct TestComponent;
+
+impl Component for TestComponent {
+    fn get_name(&self) -> &str {
+        "TestComponent"
+    }
+
+    fn init(&mut self, _state: &mut EngineState) {
+        println!("TestComponent init");
+    }
+
+    fn update(&mut self, _state: &mut EngineState) {
+        println!("TestComponent update");
+    }
+
+    fn as_any(&self) -> &dyn std::any::Any {
+        self
+    }
+
+    fn as_any_mut(&mut self) -> &mut dyn std::any::Any {
+        self
+    }
+}
 
 fn main() {
-    let mut st = EngineState::new();
+    let mut st = EngineManager::default();
 
     st.add_resource(EventSystem::default());
+    st.add_resource(SceneManager::default());
 
-    let es = st.get_resource_mut::<EventSystem>().unwrap();
+    let scene_manager = st.get_resource_mut::<SceneManager>().unwrap();
 
-    es.subscribe::<WindowResizedEvent>(|e: &dyn Event| {
-        let e = e.as_any().downcast_ref::<WindowResizedEvent>().unwrap();
-        println!("Window resized to {}x{}", e.width, e.height);
-    });
+    let mut scene = amuse_scene::Scene::new();
+    let mut object = amuse_scene::Object::new("test");
+    object.add_component(TestComponent);
+    scene.add_object(object);
+
+    scene_manager.set_scene(scene);
 
     st.add_resource(Window::default());
 }

@@ -1,14 +1,10 @@
 [package]
-name = "amuse_window"
+name = "amuse_events"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-amuse_macro = { path = "../amuse_macro" }
-amuse_core = { path = "../amuse_core" }
 amuse_event = { path = "../amuse_event" }
-amuse_events = { path = "../amuse_events" }
-winit = { version = "0.29", features = ["rwh_05"]}
-
+amuse_macro = { path = "../amuse_macro" }
